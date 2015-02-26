@@ -1,0 +1,123 @@
+{
+  "result": [
+  {
+    "name": "IIS_GENERAL_CPU_USAGE",
+    "displayName": "IIS CPU Usage",
+    "description": "Average percentage of processor time occupied",
+    "unit": "percentage",
+    "displayNameShort": "CPU Usage",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "IIS_GENERAL_CPU_QUEUE_LENGTH",
+    "displayName": "IIS CPU Queue Length",
+    "description": "The processor queue is being filled up with threads when the server's processor are busy servicing other threads at the moment.",
+    "unit": "number",
+    "displayNameShort": "CPU Queue Length",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "IIS_GENERAL_MEMORY_FREE",
+    "displayName": "IIS Free Memory",
+    "description": "Refers to the amount of physical memory on the system that can be used by new processes.",
+    "unit": "bytecount",
+    "displayNameShort": "Free Memory",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "IIS_GENERAL_MEMORY_PAGE_PER_SECOND",
+    "displayName": "IIS Memory Page/Second",
+    "description": "Refers to the amount of read and write request from memory to disk.",
+    "unit": "number",
+    "displayNameShort": "Memory Page/Second",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "IIS_GENERAL_DISK_TIME",
+    "displayName": "IIS Disk Time Usage",
+    "description": "Refers to the percentage of time the disk was occupied.",
+    "unit": "percentage",
+    "displayNameShort": "Dist Time Usage",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "IIS_GENERAL_NETWORK_BYTES_PER_SECOND",
+    "displayName": "IIS Network Bytes/Second",
+    "description": "Refers to the total amount of bytes over the network.",
+    "unit": "number",
+    "displayNameShort": "Network Bytes/Second",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "IIS_ASPNET_REQUESTS_PER_SECOND",
+    "displayName": "IIS Requests/Second",
+    "description": "Shows the throughput o the ASP.NET application on the server.",
+    "unit": "number",
+    "displayNameShort": "Requests/Second",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "IIS_ASPNET_RESTARTS",
+    "displayName": "IIS Application Restarts",
+    "description": "Indicates the number of restarts of the application in the server's uptime.",
+    "unit": "number",
+    "displayNameShort": "Application Restarts",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "IIS_ASPNET_REQUEST_WAIT_TIME",
+    "displayName": "IIS Request Wait Time",
+    "description": "Shows the amount of time that the last request was held in the queue.",
+    "unit": "duration",
+    "displayNameShort": "Request Wait Time",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "IIS_ASPNET_REQUESTS_QUEUED",
+    "displayName": "IIS Requests Queued",
+    "description": "The number of request that are in the queue to be processed.",
+    "unit": "number",
+    "displayNameShort": "Rqeuests Queued",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "IIS_ASPNET_EXECPTIONS_THROWN_PER_SECOND",
+    "displayName": "IIS Exceptions Thrown/Second",
+    "description": "number of exceptions per second that the application is throwing.",
+    "unit": "number",
+    "displayNameShort": "Exceptions Thrown/Second",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "IIS_ASPNET_TOTAL_COMMITTED_BYTES",
+    "displayName": "IIS Total Commited Bytes",
+    "description": "Amount of virtual memory reserved for the application on the paging file.",
+    "unit": "bytecount",
+    "displayNameShort": "Total Commited Bytes",
+    "defaultAggregate": "max"
+  },
+  {
+    "name": "IIS_SERVICE_GET_REQUESTS_PER_SECOND",
+    "displayName": "IIS GET Requests",
+    "description": "Amount of GET requests processed in a second.",
+    "unit": "number",
+    "displayNameShort": "GET Requests/Second",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "IIS_SERVICE_POST_REQUESTS_PER_SECOND",
+    "displayName": "IIS POST Requests/Second",
+    "description": "Amount of POST requests processed in a second.",
+    "unit": "number",
+    "displayNameShort": "POST Requests/Second",
+    "defaultAggregate": "avg"
+  },
+  {
+    "name": "IIS_SERVICE_CURRENT_CONNECTIONS",
+    "displayName": "IIS Current Connections",
+    "description": "Number of active connections with the Web Service.",
+    "unit": "number",
+    "displayNameShort": "Current Connections",
+    "defaultAggregate": "max"
+  }]
+}
