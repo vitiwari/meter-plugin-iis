@@ -30,7 +30,7 @@ function Plugin:initialize(params)
 		self.pollInterval = params.pollInterval or self.pollInterval
 		self.source = params.source or self.source
 		self.minValue = params.minValue or self.minValue
-		self.maxvalue = params.maxValue or self.minValue
+		self.maxvalue = params.maxValue or self.maxValue
 	end
 
 	print("_bevent:" .. self.name .. " up : version " .. self.version ..  "|t:info|tags:lua,plugin")

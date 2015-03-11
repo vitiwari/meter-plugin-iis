@@ -136,7 +136,7 @@ params.version = '1.0'
 params.command = "powershell -NoProfile -File tools\\get-performance-counters.ps1 " .. concatPerformanceCounters(_map) 
 --params.command = "powershell -NoProfile -File tools\\get-performance-counters-test.ps1" 
 --print(params.command)
-local plugin = CommandPlugin:new(boundary.param)
+local plugin = CommandPlugin:new(params)
 
 function plugin:onParseCommandOutput(output)
 

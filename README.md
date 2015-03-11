@@ -2,18 +2,40 @@ boundary-iis-plugin
 -------------------
 A Boundary plugin that collects metrics from IIS performance counters.
 
+## Prerequisites
+
 ### Supported OS
 
-|    OS   | Windows |
-|:-------:|:-------:|
-|Supported|    v    |
+|     OS    | Linux | Windows | SmartOS | OS X |
+|:----------|:-----:|:-------:|:-------:|:----:|
+| Supported |       |    v    |         |      |
 
-### Requirements
+#### Boundary Meter Versions V4.0 Or Greater REQUIRED
+
+To get the new meter:
+
+    curl -fsS \
+        -d "{\"token\":\"<your API token here>\"}" \
+        -H "Content-Type: application/json" \
+        "https://meter.boundary.com/setup_meter" > setup_meter.sh
+    chmod +x setup_meter.sh
+    ./setup_meter.sh
+
+
 To run this plugin you need Powershell
 
-### Metrics that will extract are:
+### Plugin Setup
+
+No special setup is required (except basic configuration of options).
+
+#### Plugin Configuration Fields
+
+|Setting Name          |Identifier      |Type     |Description                                                                              |
+|:---------------------|----------------|---------|:----------------------------------------------------------------------------------------|
+|Poll Interval         |pollInterval    |integer  |How often (in milliseconds) to poll the Couchbase node for metrics (default: 5000).      |
+
+### Metrics Collected
 Tracks the following metrics for IIS/ASP.NET.
-For a detailed explanation of performance counters collected see this link: [http://blog.monitis.com/2012/04/02/important-iis7-counters/](http://blog.monitis.com/2012/04/02/important-iis7-counters/).
 
 | Metric Name | Description | Category |
 |:------------|:-----------:|:--------:|
@@ -32,3 +54,7 @@ For a detailed explanation of performance counters collected see this link: [htt
 | IIS_SERVICE_GET_REQUESTS_PER_SECOND | Measures the amount of GET requests processed in a second.| IIS/ASP.NET |
 | IIS_SERVICE_POST_REQUESTS_PER_SECOND | Measures the amount of POST requests processed in a second.| IIS/ASP.NET |
 | IIS_SERVICE_CURRENT_CONNECTIONS | Shows the number of active connections with the Web Service.| IIS/ASP.NET
+
+### References
+For a detailed explanation of performance counters collected see this link: [http://blog.monitis.com/2012/04/02/important-iis7-counters/](http://blog.monitis.com/2012/04/02/important-iis7-counters/).
+

@@ -1,18 +1,47 @@
 {
     "description": "A Boundary plugin for IIS that collects metrics from performance counters.",
     "icon" : "icon.png",
-    "command": "boundary-meter index.lua",
-    "metrics" : ["IIS_GENERAL_CPU_USAGE", "IIS_GENERAL_CPU_QUEUE_LENGTH","IIS_GENERAL_MEMORY_FREE", "IIS_GENERAL_MEMORY_PAGE_PER_SECOND", "IIS_GENERAL_DISK_TIME",
-				"IIS_GENERAL_NETWORK_BYTES_PER_SECOND", "IIS_ASPNET_REQUESTS_PER_SECOND", "IIS_ASPNET_RESTARTS", "IIS_ASPNET_REQUEST_WAIT_TIME",
-		    	"IIS_ASPNET_REQUESTS_QUEUED", "IIS_ASPNET_EXECPTIONS_THROWN_PER_SECOND","IIS_ASPNET_TOTAL_COMMITTED_BYTES","IIS_SERVICE_GET_REQUESTS_PER_SECOND",
-		    	"IIS_SERVICE_POST_REQUESTS_PER_SECOND","IIS_SERVICE_CURRENT_CONNECTIONS"],
+    "command": "boundary-meter init.lua",
     "postExtract" : "",
+    "metrics" : [
+        "IIS_GENERAL_CPU_USAGE",
+        "IIS_GENERAL_CPU_QUEUE_LENGTH",
+        "IIS_GENERAL_MEMORY_FREE",
+        "IIS_GENERAL_MEMORY_PAGE_PER_SECOND",
+        "IIS_GENERAL_DISK_TIME",
+        "IIS_GENERAL_NETWORK_BYTES_PER_SECOND",
+        "IIS_ASPNET_REQUESTS_PER_SECOND",
+        "IIS_ASPNET_RESTARTS",
+        "IIS_ASPNET_REQUEST_WAIT_TIME",
+        "IIS_ASPNET_REQUESTS_QUEUED",
+        "IIS_ASPNET_EXECPTIONS_THROWN_PER_SECOND",
+        "IIS_ASPNET_TOTAL_COMMITTED_BYTES",
+        "IIS_SERVICE_GET_REQUESTS_PER_SECOND",
+        "IIS_SERVICE_POST_REQUESTS_PER_SECOND",
+        "IIS_SERVICE_CURRENT_CONNECTIONS"
+    ],
     "paramSchema": [
+        {
+            "title": "Minimum Value",
+            "name": "minValue",
+            "description": "The minimum value for the randomizer.",
+            "type": "integer",
+            "default": 0,
+            "required": false
+        },
+        {
+            "title": "Maximum Value",
+            "name": "maxValue",
+            "description": "The maximum value for the randomizer.",
+            "type": "integer",
+            "default": 0,
+            "required": false
+        },
         {
             "title": "Poll Time (ms)",
             "name": "pollInterval",
             "description": "The Poll Interval to call the command. Defaults 5 seconds",
-            "type": "string",
+            "type": "integer",
             "default": 5000,
             "required": true
         }
