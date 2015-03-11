@@ -1,4 +1,4 @@
-boundary-iis-plugin
+Boundary IIS Plugin
 -------------------
 A Boundary plugin that collects metrics from IIS performance counters.
 
@@ -21,8 +21,7 @@ To get the new meter:
     chmod +x setup_meter.sh
     ./setup_meter.sh
 
-
-To run this plugin you need Powershell
+#### PowerShell is Required To Run This Plugin
 
 ### Plugin Setup
 
