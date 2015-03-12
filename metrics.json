@@ -5,6 +5,8 @@
     "displayName": "IIS CPU Usage",
     "description": "Average percentage of processor time occupied",
     "unit": "percentage",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "CPU Usage",
     "defaultAggregate": "avg"
   },
@@ -13,6 +15,8 @@
     "displayName": "IIS CPU Queue Length",
     "description": "The processor queue is being filled up with threads when the server's processor are busy servicing other threads at the moment.",
     "unit": "number",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "CPU Queue Length",
     "defaultAggregate": "avg"
   },
@@ -21,6 +25,8 @@
     "displayName": "IIS Free Memory",
     "description": "Refers to the amount of physical memory on the system that can be used by new processes.",
     "unit": "bytecount",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "Free Memory",
     "defaultAggregate": "avg"
   },
@@ -29,6 +35,8 @@
     "displayName": "IIS Memory Page/Second",
     "description": "Refers to the amount of read and write request from memory to disk.",
     "unit": "number",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "Memory Page/Second",
     "defaultAggregate": "avg"
   },
@@ -37,6 +45,8 @@
     "displayName": "IIS Disk Time Usage",
     "description": "Refers to the percentage of time the disk was occupied.",
     "unit": "percentage",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "Dist Time Usage",
     "defaultAggregate": "avg"
   },
@@ -45,6 +55,8 @@
     "displayName": "IIS Network Bytes/Second",
     "description": "Refers to the total amount of bytes over the network.",
     "unit": "number",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "Network Bytes/Second",
     "defaultAggregate": "avg"
   },
@@ -53,6 +65,8 @@
     "displayName": "IIS Requests/Second",
     "description": "Shows the throughput o the ASP.NET application on the server.",
     "unit": "number",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "Requests/Second",
     "defaultAggregate": "avg"
   },
@@ -61,6 +75,8 @@
     "displayName": "IIS Application Restarts",
     "description": "Indicates the number of restarts of the application in the server's uptime.",
     "unit": "number",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "Application Restarts",
     "defaultAggregate": "avg"
   },
@@ -69,6 +85,8 @@
     "displayName": "IIS Request Wait Time",
     "description": "Shows the amount of time that the last request was held in the queue.",
     "unit": "duration",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "Request Wait Time",
     "defaultAggregate": "avg"
   },
@@ -77,6 +95,8 @@
     "displayName": "IIS Requests Queued",
     "description": "The number of request that are in the queue to be processed.",
     "unit": "number",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "Rqeuests Queued",
     "defaultAggregate": "avg"
   },
@@ -85,6 +105,8 @@
     "displayName": "IIS Exceptions Thrown/Second",
     "description": "number of exceptions per second that the application is throwing.",
     "unit": "number",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "Exceptions Thrown/Second",
     "defaultAggregate": "avg"
   },
@@ -93,6 +115,8 @@
     "displayName": "IIS Total Commited Bytes",
     "description": "Amount of virtual memory reserved for the application on the paging file.",
     "unit": "bytecount",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "Total Commited Bytes",
     "defaultAggregate": "max"
   },
@@ -101,6 +125,8 @@
     "displayName": "IIS GET Requests",
     "description": "Amount of GET requests processed in a second.",
     "unit": "number",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "GET Requests/Second",
     "defaultAggregate": "avg"
   },
@@ -109,6 +135,8 @@
     "displayName": "IIS POST Requests/Second",
     "description": "Amount of POST requests processed in a second.",
     "unit": "number",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "POST Requests/Second",
     "defaultAggregate": "avg"
   },
@@ -117,6 +145,8 @@
     "displayName": "IIS Current Connections",
     "description": "Number of active connections with the Web Service.",
     "unit": "number",
+    "defaultResolutionMS": 0,
+    "isDisabled": 0,
     "displayNameShort": "Current Connections",
     "defaultAggregate": "max"
   }]
