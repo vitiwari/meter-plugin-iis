@@ -3,6 +3,9 @@
     "icon" : "icon.png",
     "command": "boundary-meter init.lua",
     "postExtract" : "",
+    "command_lua": "boundary-meter init.lua",
+    "postExtract_lua" : "",
+
     "metrics" : [
         "IIS_GENERAL_CPU_USAGE",
         "IIS_GENERAL_CPU_QUEUE_LENGTH",
