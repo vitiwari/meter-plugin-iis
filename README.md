@@ -1,5 +1,5 @@
-Boundary IIS Plugin
--------------------
+# Boundary IIS Plugin
+
 A Boundary plugin that collects metrics from IIS performance counters.
 
 ## Prerequisites
@@ -30,8 +30,8 @@ No special setup is required (except basic configuration of options).
 #### Plugin Configuration Fields
 
 |Setting Name          |Identifier      |Type     |Description                                                                              |
-|:---------------------|----------------|---------|:----------------------------------------------------------------------------------------|
-|Poll Interval         |pollInterval    |integer  |How often (in milliseconds) to poll the Couchbase node for metrics (default: 5000).      |
+|:---------------------|----------------|---------|:----------------------------------------------------------------------------|
+|Poll Interval         |pollInterval    |integer  |How often (in milliseconds) to poll the IIS node for metrics (default: 5000).|
 
 ### Metrics Collected
 Tracks the following metrics for IIS/ASP.NET.
