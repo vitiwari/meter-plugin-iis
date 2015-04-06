@@ -31,6 +31,7 @@ function parsePerformanceCounterLine(line)
 end
 
 local _map = {
+--	{metric = 'IIS_GENERAL_CPU_USAGE', perfCounterIdString = '', perfCounterLocalname = '\\Processador(_Total)\\% Tempo de Processador'},
 	{metric = 'IIS_GENERAL_CPU_USAGE', perfCounterIdString = '', perfCounterLocalname = '\\Processor(_Total)\\% Processor Time'},
 	{metric = 'IIS_GENERAL_CPU_QUEUE_LENGTH', perfCounterIdString = '', perfCounterLocalname = '\\System\\Processor Queue Length'},
 	{metric = 'IIS_GENERAL_MEMORY_FREE', perfCounterIdString = '', perfCounterLocalname = '\\Memory\\Available Bytes'},
@@ -106,7 +107,7 @@ function getPerformanceCounterLocalnamesMap(map)
 end
 
 -- Update the performance counter map to local names
-_map = getPerformanceCounterLocalnamesMap(_map)
+--_map = getPerformanceCounterLocalnamesMap(_map)
 
 function cleanSpecialChars(str)
 	local clean = string.gsub(str, '%%', '')
@@ -134,13 +135,18 @@ local params = boundary.param
 params.name = 'Boundary IIS Plugin'
 params.version = '1.0'
 params.command = "powershell -NoProfile -File tools\\get-performance-counters.ps1 " .. concatPerformanceCounters(_map) 
---params.command = "powershell -NoProfile -File tools\\get-performance-counters-test.ps1" 
+--params.command = "cat test/lines.txt" 
 --print(params.command)
-local plugin = CommandPlugin:new(params)
+local plugin = CommandPlugin:new(boundary.param)
 
 function plugin:onParseCommandOutput(output)
 
-	local lines = splitLines(output, '\r\n')
+	local delimiter = '\r\n'
+	if os.type() == 'Linux' then
+		delimiter = '\n'	
+	end
+
+	local lines = splitLines(output, delimiter)
 	local result = {}
 	table.foreach(lines, 
 		function (_, l)
