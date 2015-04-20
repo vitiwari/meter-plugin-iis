@@ -10,16 +10,10 @@ A Boundary plugin that collects metrics from IIS performance counters.
 |:----------|:-----:|:-------:|:-------:|:----:|
 | Supported |       |    v    |         |      |
 
-#### Boundary Meter Versions V4.0 Or Greater REQUIRED
+#### Boundary Meter Versions V4.0 or later
 
-To get the new meter:
-
-    curl -fsS \
-        -d "{\"token\":\"<your API token here>\"}" \
-        -H "Content-Type: application/json" \
-        "https://meter.boundary.com/setup_meter" > setup_meter.sh
-    chmod +x setup_meter.sh
-    ./setup_meter.sh
+- To install new meter go to Settings->Installation or [see instructons|https://help.boundary.com/hc/en-us/sections/200634331-Installation]. 
+- To upgrade the meter to the latest version - [see instructons|https://help.boundary.com/hc/en-us/articles/201573102-Upgrading-the-Boundary-Meter].
 
 #### PowerShell is Required To Run This Plugin
 

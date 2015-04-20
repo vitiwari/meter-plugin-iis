@@ -13,6 +13,7 @@ local os = require('os')
 local CommandPlugin = require('framework').CommandPlugin
 local table = require('table')
 local io = require('io')
+local fs = require('fs')
 
 function splitLines(str, terminator)
 	
@@ -81,7 +82,8 @@ function getPerformanceCounterLocalnamesMap(map)
 
 	local params = concatPerformanceCounters(map)
 	--local proc = io.popen('powershell -NoProfile -File tools\\get-performance-counter-mapping.ps1 ' .. params)
-	local proc = io.popen('cat ./test/mapping.txt')
+	--local proc = io.popen('cat ./test/mapping.txt')
+	local proc = fs.readFileSync('./test/mapping.txt')
 
 	local output = proc:read('*a')
 	proc:close()
