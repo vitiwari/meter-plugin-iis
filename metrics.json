@@ -1,153 +1,122 @@
 {
-  "result": [
-  {
-    "name": "IIS_GENERAL_CPU_USAGE",
-    "displayName": "IIS CPU Usage",
-    "description": "Average percentage of processor time occupied",
-    "unit": "percentage",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
-    "displayNameShort": "CPU Usage",
-    "defaultAggregate": "avg"
-  },
-  {
-    "name": "IIS_GENERAL_CPU_QUEUE_LENGTH",
-    "displayName": "IIS CPU Queue Length",
-    "description": "The processor queue is being filled up with threads when the server's processor are busy servicing other threads at the moment.",
-    "unit": "number",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
-    "displayNameShort": "CPU Queue Length",
-    "defaultAggregate": "avg"
-  },
-  {
-    "name": "IIS_GENERAL_MEMORY_FREE",
-    "displayName": "IIS Free Memory",
-    "description": "Refers to the amount of physical memory on the system that can be used by new processes.",
-    "unit": "bytecount",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
-    "displayNameShort": "Free Memory",
-    "defaultAggregate": "avg"
-  },
-  {
-    "name": "IIS_GENERAL_MEMORY_PAGE_PER_SECOND",
-    "displayName": "IIS Memory Page/Second",
-    "description": "Refers to the amount of read and write request from memory to disk.",
-    "unit": "number",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
-    "displayNameShort": "Memory Page/Second",
-    "defaultAggregate": "avg"
-  },
-  {
-    "name": "IIS_GENERAL_DISK_TIME",
-    "displayName": "IIS Disk Time Usage",
-    "description": "Refers to the percentage of time the disk was occupied.",
-    "unit": "percentage",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
-    "displayNameShort": "Dist Time Usage",
-    "defaultAggregate": "avg"
-  },
-  {
-    "name": "IIS_GENERAL_NETWORK_BYTES_PER_SECOND",
-    "displayName": "IIS Network Bytes/Second",
-    "description": "Refers to the total amount of bytes over the network.",
-    "unit": "number",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
-    "displayNameShort": "Network Bytes/Second",
-    "defaultAggregate": "avg"
-  },
-  {
-    "name": "IIS_ASPNET_REQUESTS_PER_SECOND",
-    "displayName": "IIS Requests/Second",
-    "description": "Shows the throughput o the ASP.NET application on the server.",
-    "unit": "number",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
-    "displayNameShort": "Requests/Second",
-    "defaultAggregate": "avg"
-  },
-  {
-    "name": "IIS_ASPNET_RESTARTS",
-    "displayName": "IIS Application Restarts",
-    "description": "Indicates the number of restarts of the application in the server's uptime.",
-    "unit": "number",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
-    "displayNameShort": "Application Restarts",
-    "defaultAggregate": "avg"
-  },
-  {
-    "name": "IIS_ASPNET_REQUEST_WAIT_TIME",
-    "displayName": "IIS Request Wait Time",
-    "description": "Shows the amount of time that the last request was held in the queue.",
-    "unit": "duration",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
-    "displayNameShort": "Request Wait Time",
-    "defaultAggregate": "avg"
-  },
-  {
-    "name": "IIS_ASPNET_REQUESTS_QUEUED",
-    "displayName": "IIS Requests Queued",
-    "description": "The number of request that are in the queue to be processed.",
-    "unit": "number",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
-    "displayNameShort": "Rqeuests Queued",
-    "defaultAggregate": "avg"
-  },
-  {
-    "name": "IIS_ASPNET_EXECPTIONS_THROWN_PER_SECOND",
-    "displayName": "IIS Exceptions Thrown/Second",
+  "IIS_ASPNET_EXECPTIONS_THROWN_PER_SECOND": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
     "description": "number of exceptions per second that the application is throwing.",
-    "unit": "number",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
+    "displayName": "IIS Exceptions Thrown/Second",
     "displayNameShort": "Exceptions Thrown/Second",
-    "defaultAggregate": "avg"
+    "unit": "number"
   },
-  {
-    "name": "IIS_ASPNET_TOTAL_COMMITTED_BYTES",
-    "displayName": "IIS Total Commited Bytes",
+  "IIS_ASPNET_REQUESTS_PER_SECOND": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "Shows the throughput o the ASP.NET application on the server.",
+    "displayName": "IIS Requests/Second",
+    "displayNameShort": "Requests/Second",
+    "unit": "number"
+  },
+  "IIS_ASPNET_REQUESTS_QUEUED": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "The number of request that are in the queue to be processed.",
+    "displayName": "IIS Requests Queued",
+    "displayNameShort": "Rqeuests Queued",
+    "unit": "number"
+  },
+  "IIS_ASPNET_REQUEST_WAIT_TIME": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "Shows the amount of time that the last request was held in the queue.",
+    "displayName": "IIS Request Wait Time",
+    "displayNameShort": "Request Wait Time",
+    "unit": "duration"
+  },
+  "IIS_ASPNET_RESTARTS": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "Indicates the number of restarts of the application in the server's uptime.",
+    "displayName": "IIS Application Restarts",
+    "displayNameShort": "Application Restarts",
+    "unit": "number"
+  },
+  "IIS_ASPNET_TOTAL_COMMITTED_BYTES": {
+    "defaultAggregate": "max",
+    "defaultResolutionMS": 1000,
     "description": "Amount of virtual memory reserved for the application on the paging file.",
-    "unit": "bytecount",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
+    "displayName": "IIS Total Commited Bytes",
     "displayNameShort": "Total Commited Bytes",
-    "defaultAggregate": "max"
+    "unit": "bytecount"
   },
-  {
-    "name": "IIS_SERVICE_GET_REQUESTS_PER_SECOND",
-    "displayName": "IIS GET Requests",
-    "description": "Amount of GET requests processed in a second.",
-    "unit": "number",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
-    "displayNameShort": "GET Requests/Second",
-    "defaultAggregate": "avg"
+  "IIS_GENERAL_CPU_QUEUE_LENGTH": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "The processor queue is being filled up with threads when the server's processor are busy servicing other threads at the moment.",
+    "displayName": "IIS CPU Queue Length",
+    "displayNameShort": "CPU Queue Length",
+    "unit": "number"
   },
-  {
-    "name": "IIS_SERVICE_POST_REQUESTS_PER_SECOND",
-    "displayName": "IIS POST Requests/Second",
-    "description": "Amount of POST requests processed in a second.",
-    "unit": "number",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
-    "displayNameShort": "POST Requests/Second",
-    "defaultAggregate": "avg"
+  "IIS_GENERAL_CPU_USAGE": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "Average percentage of processor time occupied",
+    "displayName": "IIS CPU Usage",
+    "displayNameShort": "CPU Usage",
+    "unit": "percentage"
   },
-  {
-    "name": "IIS_SERVICE_CURRENT_CONNECTIONS",
-    "displayName": "IIS Current Connections",
+  "IIS_GENERAL_DISK_TIME": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "Refers to the percentage of time the disk was occupied.",
+    "displayName": "IIS Disk Time Usage",
+    "displayNameShort": "Dist Time Usage",
+    "unit": "percentage"
+  },
+  "IIS_GENERAL_MEMORY_FREE": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "Refers to the amount of physical memory on the system that can be used by new processes.",
+    "displayName": "IIS Free Memory",
+    "displayNameShort": "Free Memory",
+    "unit": "bytecount"
+  },
+  "IIS_GENERAL_MEMORY_PAGE_PER_SECOND": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "Refers to the amount of read and write request from memory to disk.",
+    "displayName": "IIS Memory Page/Second",
+    "displayNameShort": "Memory Page/Second",
+    "unit": "number"
+  },
+  "IIS_GENERAL_NETWORK_BYTES_PER_SECOND": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "Refers to the total amount of bytes over the network.",
+    "displayName": "IIS Network Bytes/Second",
+    "displayNameShort": "Network Bytes/Second",
+    "unit": "number"
+  },
+  "IIS_SERVICE_CURRENT_CONNECTIONS": {
+    "defaultAggregate": "max",
+    "defaultResolutionMS": 1000,
     "description": "Number of active connections with the Web Service.",
-    "unit": "number",
-    "defaultResolutionMS": 0,
-    "isDisabled": 0,
+    "displayName": "IIS Current Connections",
     "displayNameShort": "Current Connections",
-    "defaultAggregate": "max"
-  }]
+    "unit": "number"
+  },
+  "IIS_SERVICE_GET_REQUESTS_PER_SECOND": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "Amount of GET requests processed in a second.",
+    "displayName": "IIS GET Requests",
+    "displayNameShort": "GET Requests/Second",
+    "unit": "number"
+  },
+  "IIS_SERVICE_POST_REQUESTS_PER_SECOND": {
+    "defaultAggregate": "avg",
+    "defaultResolutionMS": 1000,
+    "description": "Amount of POST requests processed in a second.",
+    "displayName": "IIS POST Requests/Second",
+    "displayNameShort": "POST Requests/Second",
+    "unit": "number"
+  }
 }
