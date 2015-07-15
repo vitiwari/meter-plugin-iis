@@ -1,2 +1,0 @@
-\Processor(_Total)\% Processor Time : \Processador(_Total)\% Tempo de Processador
-\System\Processor Queue Length : \Sistema\Comprimento da fila de processador

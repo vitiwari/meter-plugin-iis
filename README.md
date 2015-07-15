@@ -2,33 +2,32 @@
 
 A Boundary plugin that collects metrics from IIS performance counters.
 
-## Prerequisites
+### Prerequisites
 
-### Supported OS
+#### Supported OS
 
 |     OS    | Linux | Windows | SmartOS | OS X |
 |:----------|:-----:|:-------:|:-------:|:----:|
-| Supported |       |    v    |         |      |
+| Supported |   -   |    v    |    -    |  -   |
 
-#### Boundary Meter Versions V4.0 or later
+#### Boundary Meter versions v4.2 or later
 
-- To install new meter go to Settings->Installation or [see instructons|https://help.boundary.com/hc/en-us/sections/200634331-Installation]. 
-- To upgrade the meter to the latest version - [see instructons|https://help.boundary.com/hc/en-us/articles/201573102-Upgrading-the-Boundary-Meter].
+- To install new meter go to Settings->Installation or [see instructions](https://help.boundary.com/hc/en-us/sections/200634331-Installation).
+- To upgrade the meter to the latest version - [see instructions](https://help.boundary.com/hc/en-us/articles/201573102-Upgrading-the-Boundary-Meter). 
 
-#### PowerShell is Required To Run This Plugin
 
 ### Plugin Setup
 
-No special setup is required (except basic configuration of options).
+None
 
-#### Plugin Configuration Fields
+### Plugin Configuration Fields
 
-|Setting Name          |Identifier      |Type     |Description                                                                              |
-|:---------------------|----------------|---------|:----------------------------------------------------------------------------|
-|Poll Interval         |pollInterval    |integer  |How often (in milliseconds) to poll the IIS node for metrics (default: 5000).|
-
+|Field Name     |Description                                                                       |
+|:--------------|:---------------------------------------------------------------------------------|
+|Source         |The source to display in the legend for the data                       |
+|Poll Interval (ms)|The Poll Interval in milliseconds to poll for metrics |
+ 
 ### Metrics Collected
-Tracks the following metrics for IIS/ASP.NET.
 
 | Metric Name | Description | Category |
 |:------------|:-----------:|:--------:|
@@ -48,6 +47,9 @@ Tracks the following metrics for IIS/ASP.NET.
 | IIS_SERVICE_POST_REQUESTS_PER_SECOND | Measures the amount of POST requests processed in a second.| IIS/ASP.NET |
 | IIS_SERVICE_CURRENT_CONNECTIONS | Shows the number of active connections with the Web Service.| IIS/ASP.NET
 
+### Dashboards
+
+None
+
 ### References
 For a detailed explanation of performance counters collected see this link: [http://blog.monitis.com/2012/04/02/important-iis7-counters/](http://blog.monitis.com/2012/04/02/important-iis7-counters/).
-
