@@ -2,7 +2,23 @@
     "name" : "Boundary IIS Plugin",
     "version" : "0.9.0",
     "meterVersionRequired" : "4.2.0-611",
-    "unsupportedPlatforms" : [ ],
+    "unsupportedPlatforms": [
+        {
+            "osFamily": "Linux"
+        },
+        {
+            "osFamily": "SmartOS"
+        },
+        {
+            "osFamily": "Darwin"
+        },
+        {
+            "osFamily": "FreeBSD"
+        },
+        {
+            "osFamily": "Solaris"
+        }
+    ],
     "tags" : "iis",
     "description": "A Boundary plugin for IIS that collects metrics from performance counters.",
     "icon" : "icon.png",
