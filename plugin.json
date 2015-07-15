@@ -47,12 +47,12 @@
             "required": false
         },
         {
-            "title": "Poll Time (ms)",
+            "title": "Poll Interval (ms)",
             "name": "pollInterval",
-            "description": "The Poll Interval to call the command. Defaults 5 seconds",
+            "description": "How often (in milliseconds) to po poll the system for metrics.",
             "type": "integer",
-            "default": 5000,
-            "required": true
+            "default": 1000,
+            "required": false 
         }
     ]
 }
