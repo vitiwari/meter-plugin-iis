@@ -31,20 +31,11 @@
     
     "paramSchema": [
         {
-            "title": "Minimum Value",
-            "name": "minValue",
-            "description": "The minimum value for the randomizer.",
-            "type": "integer",
-            "default": 0,
-            "required": false
-        },
-        {
-            "title": "Maximum Value",
-            "name": "maxValue",
-            "description": "The maximum value for the randomizer.",
-            "type": "integer",
-            "default": 0,
-            "required": false
+            "title": "Source",
+            "name": "source",
+            "description": "The Source to display in the legend for the metric data.  It will default to the hostname of the server.",
+            "type": "string",
+            "required" : false
         },
         {
             "title": "Poll Interval (ms)",
