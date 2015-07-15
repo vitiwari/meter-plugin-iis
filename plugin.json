@@ -1,4 +1,9 @@
 {
+    "name" : "Boundary IIS Plugin",
+    "version" : "0.9.0",
+    "meterVersionRequired" : "4.2.0-611",
+    "unsupportedPlatforms" : [ ],
+    "tags" : "iis",
     "description": "A Boundary plugin for IIS that collects metrics from performance counters.",
     "icon" : "icon.png",
     "command": "boundary-meter init.lua",
@@ -23,6 +28,7 @@
         "IIS_SERVICE_POST_REQUESTS_PER_SECOND",
         "IIS_SERVICE_CURRENT_CONNECTIONS"
     ],
+    
     "paramSchema": [
         {
             "title": "Minimum Value",
