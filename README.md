@@ -49,7 +49,9 @@ None
 
 ### Dashboards
 
-None
+|Dashboard Name|Metrics Displayed       |
+|:-------------|:-----------------------|
+|IIS       | All |
 
 ### References
 For a detailed explanation of performance counters collected see this link: [http://blog.monitis.com/2012/04/02/important-iis7-counters/](http://blog.monitis.com/2012/04/02/important-iis7-counters/).
