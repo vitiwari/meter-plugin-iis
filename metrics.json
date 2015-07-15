@@ -2,7 +2,7 @@
   "IIS_ASPNET_EXECPTIONS_THROWN_PER_SECOND": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
-    "description": "number of exceptions per second that the application is throwing.",
+    "description": "Number of exceptions per second that the application is throwing.",
     "displayName": "IIS Exceptions Thrown/Second",
     "displayNameShort": "Exceptions Thrown/Second",
     "unit": "number"
