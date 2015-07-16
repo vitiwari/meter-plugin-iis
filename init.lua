@@ -50,6 +50,7 @@ local plugin = Plugin:new(params, ds)
 function plugin:onParseValues(data)
 	local result = {}
 	local output = data.output
+	p(data.output)
 	for v in gsplit(output, '\r\n') do
 		local metric, value = v:match('(.+):([%d.?]+)')
 		if metric and value then
