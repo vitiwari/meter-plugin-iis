@@ -39,7 +39,7 @@ local metrics_map = {
 local cmd = {
 	path = "get_metrics_native.exe",
 	args = {},
-	use_popen = false,
+	use_popen = true -- On windows if a process outputs to stderr then stdout does not flush as expected, also if stdout is forced to be non-buffered.
 }
 
 local ds = CommandOutputDataSource:new(cmd)
