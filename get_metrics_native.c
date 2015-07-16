@@ -34,7 +34,7 @@ BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **insta
     PDH_COUNTER_PATH_ELEMENTS cpeTmpl[] =
     {
         { NULL, "processor", "_total", NULL, -1, "% processor time"},
-        { NULL, "System", NULL, NULL, -1, "processor queue length"},
+        { NULL, "system", NULL, NULL, -1, "processor queue length"},
         { NULL, "memory", NULL, NULL, -1, "available bytes"},
         { NULL, "memory", NULL, NULL, -1, "pages/sec"},
         { NULL, "physicaldisk", "_total", NULL, -1 , "% disk time"},
