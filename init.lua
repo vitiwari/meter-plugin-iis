@@ -15,7 +15,6 @@
 local framework = require('framework')
 local Plugin = framework.Plugin
 local CommandOutputDataSource = framework.CommandOutputDataSource
-local CachedDataSource = framework.CachedDataSource
 local gsplit = framework.string.gsplit
 
 local params = framework.params
