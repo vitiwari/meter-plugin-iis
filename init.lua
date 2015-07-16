@@ -15,32 +15,31 @@
 local framework = require('framework')
 local Plugin = framework.Plugin
 local CommandOutputDataSource = framework.CommandOutputDataSource
-local CachedDataSource = framework.CachedDataSource
 local gsplit = framework.string.gsplit
 
 local params = framework.params
 
 local metrics_map = {
-	['processor(_total)\\% processor time'] = 'IIS_GENERAL_CPU_USAGE',
-	['system\\processor queue length'] = 'IIS_GENERAL_CPU_QUEUE_LENGTH',
-	['memory\\available bytes'] = 'IIS_GENERAL_MEMORY_FREE',
-	['memory\\pages/sec'] = 'IIS_GENERAL_MEMORY_PAGE_PER_SECOND',
-	['physicaldisk(_total)\\% disk time'] = 'IIS_GENERAL_DISK_TIME',
-	['asp.net applications(__total__)\\requests/sec'] = 'IIS_ASPNET_REQUESTS_PER_SECOND',
-	['asp.net\\application restarts'] = 'IIS_ASPNET_RESTARTS',
-	['asp.net\\request wait time'] = 'IIS_ASPNET_REQUEST_WAIT_TIME',
-	['asp.net\\requests queued'] = 'IIS_ASPNET_REQUESTS_QUEUED',
-	['.net clr exceptions(_global_)\\# of exceps thrown / sec'] = 'IIS_ASPNET_EXECPTIONS_THROWN_PER_SECOND',
-	['.net clr memory(_global_)\\# total committed bytes'] = 'IIS_ASPNET_TOTAL_COMMITTED_BYTES',
-	['web service(_total)\\get requests/sec'] = 'IIS_SERVICE_GET_REQUESTS_PER_SECOND',
-	['web service(_total)\\post requests/sec'] = 'IIS_SERVICE_POST_REQUESTS_PER_SECOND',
-	['web service(_total)\\current connections'] = 'IIS_SERVICE_CURRENT_CONNECTIONS'
+	['processor(_total)\\% processor time'] = {'IIS_GENERAL_CPU_USAGE', 0.01},
+	['system\\processor queue length'] = {'IIS_GENERAL_CPU_QUEUE_LENGTH', 1},
+	['memory\\available bytes'] = {'IIS_GENERAL_MEMORY_FREE', 1},
+	['memory\\pages/sec'] = {'IIS_GENERAL_MEMORY_PAGE_PER_SECOND', 1},
+	['physicaldisk(_total)\\% disk time'] = {'IIS_GENERAL_DISK_TIME', 0.01},
+	['asp.net applications(__total__)\\requests/sec'] = {'IIS_ASPNET_REQUESTS_PER_SECOND', 1},
+	['asp.net\\application restarts'] = {'IIS_ASPNET_RESTARTS', 1},
+	['asp.net\\request wait time'] = {'IIS_ASPNET_REQUEST_WAIT_TIME', 1},
+	['asp.net\\requests queued'] = {'IIS_ASPNET_REQUESTS_QUEUED', 1},
+	['.net clr exceptions(_global_)\\# of exceps thrown / sec'] = {'IIS_ASPNET_EXECPTIONS_THROWN_PER_SECOND', 1},
+	['.net clr memory(_global_)\\# total committed bytes'] = {'IIS_ASPNET_TOTAL_COMMITTED_BYTES', 1},
+	['web service(_total)\\get requests/sec'] = {'IIS_SERVICE_GET_REQUESTS_PER_SECOND', 1},
+	['web service(_total)\\post requests/sec'] = {'IIS_SERVICE_POST_REQUESTS_PER_SECOND', 1},
+	['web service(_total)\\current connections'] = {'IIS_SERVICE_CURRENT_CONNECTIONS', 1}
 }
 
 local cmd = {
 	path = "get_metrics_native.exe",
 	args = {},
-	use_popen = false
+	use_popen = true -- On windows if a process outputs to stderr then stdout does not flush as expected, also if stdout is forced to be non-buffered.
 }
 
 local ds = CommandOutputDataSource:new(cmd)
@@ -53,9 +52,10 @@ function plugin:onParseValues(data)
 	for v in gsplit(output, '\r\n') do
 		local metric, value = v:match('(.+):([%d.?]+)')
 		if metric and value then
-			local boundary_metric = metrics_map[metric]
+			local boundary_metric = metrics_map[metric][1]
+      local factor = metrics_map[metric][2]
 			if boundary_metric then
-				result[boundary_metric] = tonumber(value)
+				result[boundary_metric] = tonumber(value) * factor
 			end
 		end
 	end

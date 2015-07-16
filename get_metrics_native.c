@@ -12,6 +12,8 @@ int main(int argc, char *argv[])
 
 BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **instances)
 {
+    setbuf(stdout, NULL);
+    
     PDH_STATUS s;
 
     HQUERY hQuery;
@@ -32,7 +34,7 @@ BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **insta
     PDH_COUNTER_PATH_ELEMENTS cpeTmpl[] =
     {
         { NULL, "processor", "_total", NULL, -1, "% processor time"},
-        { NULL, "System", NULL, NULL, -1, "processor queue length"},
+        { NULL, "system", NULL, NULL, -1, "processor queue length"},
         { NULL, "memory", NULL, NULL, -1, "available bytes"},
         { NULL, "memory", NULL, NULL, -1, "pages/sec"},
         { NULL, "physicaldisk", "_total", NULL, -1 , "% disk time"},
@@ -122,14 +124,14 @@ BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **insta
             }
             if (cpe[j].szInstanceName)
             {
-                printf("%s(%s)\\%s:%3.3f\n",
+                fprintf(stdout, "%s(%s)\\%s:%3.3f\n",
                     cpe[j].szObjectName,
                     cpe[j].szInstanceName,
                     cpe[j].szCounterName,
                     counterValue.doubleValue);
             }
             else
-                printf("%s\\%s:%3.3f\n",
+                fprintf(stdout, "%s\\%s:%3.3f\n",
                     cpe[j].szObjectName,
                     cpe[j].szCounterName,
                     counterValue.doubleValue);

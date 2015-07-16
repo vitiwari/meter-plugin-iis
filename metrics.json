@@ -61,7 +61,7 @@
     "description": "Average percentage of processor time occupied",
     "displayName": "IIS CPU Usage",
     "displayNameShort": "CPU Usage",
-    "unit": "percentage"
+    "unit": "percent"
   },
   "IIS_GENERAL_DISK_TIME": {
     "defaultAggregate": "avg",
@@ -69,7 +69,7 @@
     "description": "Refers to the percentage of time the disk was occupied.",
     "displayName": "IIS Disk Time Usage",
     "displayNameShort": "Dist Time Usage",
-    "unit": "percentage"
+    "unit": "percent"
   },
   "IIS_GENERAL_MEMORY_FREE": {
     "defaultAggregate": "avg",
