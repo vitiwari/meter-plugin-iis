@@ -54,19 +54,19 @@
     
     "paramSchema": [
         {
-            "title": "Source",
-            "name": "source",
-            "description": "The Source to display in the legend for the metric data.  It will default to the hostname of the server.",
-            "type": "string",
-            "required" : false
-        },
-        {
             "title": "Poll Interval (ms)",
             "name": "pollInterval",
             "description": "How often (in milliseconds) to po poll the system for metrics.",
             "type": "integer",
             "default": 1000,
             "required": false 
+        },
+        {
+            "title": "Source",
+            "name": "source",
+            "description": "The Source to display in the legend for the metric data.  It will default to the hostname of the server.",
+            "type": "string",
+            "required" : false
         }
     ]
 }
