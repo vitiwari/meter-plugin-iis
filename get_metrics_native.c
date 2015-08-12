@@ -41,7 +41,7 @@ BOOL WINAPI OutputError(_TCHAR *pMessage, DWORD dwErrorCode)
 
     if (!FormatMessage(FORMAT_MESSAGE_FROM_HMODULE |
                        FORMAT_MESSAGE_ALLOCATE_BUFFER |
-                       FORMAT_MESSAGE_ARGUMENT_ARRAY,
+                       FORMAT_MESSAGE_IGNORE_INSERTS,
                        hPdhLibrary,
                        dwErrorCode,
                        0,
