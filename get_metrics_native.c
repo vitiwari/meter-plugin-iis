@@ -1,20 +1,69 @@
+#define _UNICODE
+#define UNICODE
+#include <tchar.h>
 #include <windows.h>
 #include <pdh.h>
+#include <pdhmsg.h>
 #include <stdio.h>
+#include <wchar.h>
 #include <stdlib.h>
 
-BOOL WINAPI GetCounterValues(LPTSTR serverName, int n, char** instances);
+BOOL WINAPI GetCounterValues(LPTSTR serverName, int n, _TCHAR** instances);
+BOOL WINAPI OutputError(_TCHAR *pMessage, DWORD returnCode);
 
-int main(int argc, char *argv[])
+int main(int argc, _TCHAR *argv[])
 {
-    GetCounterValues(NULL, argc-1, &argv[1]);
+    int resultCode = 0; 
+    DWORD dwErrorCode = PDH_NO_DATA;
+
+    if (GetCounterValues(NULL, argc-1, &argv[1]) != ERROR_SUCCESS)
+    {
+      resultCode = 1;
+    }
+    return resultCode;
 }
 
-BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **instances)
+BOOL WINAPI OutputError(_TCHAR *pMessage, DWORD dwErrorCode)
 {
+    HANDLE hPdhLibrary = NULL;
+    LPWSTR pErrorMessage = NULL;
+    DWORD_PTR pArgs[] = { (DWORD_PTR)L"<collectionname>" };
+
+    hPdhLibrary = LoadLibrary(_TEXT("pdh.dll"));
+    if (NULL == hPdhLibrary)
+    {
+        fwprintf(stderr, _TEXT("LoadLibrary() failed with %lu\n"), GetLastError());
+        return;
+    }
+
+    // Use the arguments array if the message contains insertion points, or you
+    // can use FORMAT_MESSAGE_IGNORE_INSERTS to ignore the insertion points.
+
+    if (!FormatMessage(FORMAT_MESSAGE_FROM_HMODULE |
+                       FORMAT_MESSAGE_ALLOCATE_BUFFER |
+                       FORMAT_MESSAGE_IGNORE_INSERTS,
+                       hPdhLibrary,
+                       dwErrorCode,
+                       0,
+                       (LPWSTR)&pErrorMessage,
+                       0, NULL))
+    {
+        fwprintf(stderr, _TEXT("Format message failed with 0x%x\n"), GetLastError());
+        return;
+    }
+
+    fwprintf(stderr, _TEXT("%s, return code: %x \"%s\"\n"), pMessage, dwErrorCode, pErrorMessage);
+    LocalFree(pErrorMessage);
+    return ERROR_SUCCESS;
+}
+
+BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, _TCHAR **instances)
+{
+    // Set to standard out to be unbuffered so we do not have to flush
+    // each time we write out metric measurements
     setbuf(stdout, NULL);
     
-    PDH_STATUS s;
+    PDH_STATUS status;
 
     HQUERY hQuery;
 
@@ -33,20 +82,20 @@ BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **insta
     // Each element in the array is a PDH_COUNTER_PATH_ELEMENTS structure.
     PDH_COUNTER_PATH_ELEMENTS cpeTmpl[] =
     {
-        { NULL, "processor", "_total", NULL, -1, "% processor time"},
-        { NULL, "system", NULL, NULL, -1, "processor queue length"},
-        { NULL, "memory", NULL, NULL, -1, "available bytes"},
-        { NULL, "memory", NULL, NULL, -1, "pages/sec"},
-        { NULL, "physicaldisk", "_total", NULL, -1 , "% disk time"},
-        { NULL, "asp.net applications", "__total__", NULL, -1, "requests/sec"},
-        { NULL, "asp.net", NULL, NULL, -1, "application restarts"},
-        { NULL, "asp.net", NULL, NULL, -1, "request wait time"},
-        { NULL, "asp.net", NULL, NULL, -1, "requests queued"},
-        { NULL, ".net clr exceptions", "_global_", NULL, -1, "# of exceps thrown / sec"},
-        { NULL, ".net clr memory", "_global_", NULL, -1, "# total committed bytes"},
-        { NULL, "web service", "_total", NULL, -1, "get requests/sec"},
-        { NULL, "web service", "_total", NULL, -1, "post requests/sec"},
-        { NULL, "web service", "_total", NULL, -1, "current connections"}
+        { NULL, _TEXT("processor"), _TEXT("_total"), NULL, -1, _TEXT("% processor time")},
+        { NULL, _TEXT("system"), NULL, NULL, -1, _TEXT("processor queue length")},
+        { NULL, _TEXT("memory"), NULL, NULL, -1, _TEXT("available bytes")},
+        { NULL, _TEXT("memory"), NULL, NULL, -1, _TEXT("pages/sec")},
+        { NULL, _TEXT("physicaldisk"), _TEXT("_total"), NULL, -1 , _TEXT("% disk time")},
+        { NULL, _TEXT("asp.net applications"), _TEXT("__total__"), NULL, -1, _TEXT("requests/sec")},
+        { NULL, _TEXT("asp.net"), NULL, NULL, -1, _TEXT("application restarts")},
+        { NULL, _TEXT("asp.net"), NULL, NULL, -1, _TEXT("request wait time")},
+        { NULL, _TEXT("asp.net"), NULL, NULL, -1, _TEXT("requests queued")},
+        { NULL, _TEXT(".net clr exceptions"), _TEXT("_global_"), NULL, -1, _TEXT("# of exceps thrown / sec")},
+        { NULL, _TEXT(".net clr memory"), _TEXT("_global_"), NULL, -1, _TEXT("# total committed bytes")},
+        { NULL, _TEXT("web service"), _TEXT("_total"), NULL, -1, _TEXT("get requests/sec")},
+        { NULL, _TEXT("web service"), _TEXT("_total"), NULL, -1, _TEXT("post requests/sec")},
+        { NULL, _TEXT("web service"), _TEXT("_total"), NULL, -1, _TEXT("current connections")}
     };
 
     const int cpeTmplCount = sizeof(cpeTmpl) / sizeof(cpeTmpl[0]);
@@ -56,18 +105,20 @@ BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **insta
     HCOUNTER *hCounter = malloc(sizeof(HCOUNTER) * countersCount);
     PDH_COUNTER_PATH_ELEMENTS *cpe = malloc(sizeof(PDH_COUNTER_PATH_ELEMENTS) * countersCount);
 
-    char szFullPath[MAX_PATH];
+    _TCHAR szFullPath[MAX_PATH];
+    _TCHAR szMessage[MAX_PATH];
     DWORD cbPathSize;
 
-    int ret = -1;
+    int result = -1;
 
     PDH_FMT_COUNTERVALUE counterValue;
 
     // Only do this setup once.
-    if ((s = PdhOpenQuery(NULL, 0, &hQuery)) != ERROR_SUCCESS)
+    status = PdhOpenQuery(NULL, 0, &hQuery);
+    if (status != ERROR_SUCCESS)
     {
-        fprintf(stderr, "POQ failed %08x\n", s);
-        return ret;
+        OutputError(_TEXT("PdhOpenQuery() failed"), status);
+        return result;
     }
 
     for (j = 0; j < cpeTmplCount; j++) {
@@ -85,18 +136,20 @@ BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **insta
         cpe[index].dwInstanceIndex = cpeTmplItem.dwInstanceIndex;
         cpe[index].szCounterName = cpeTmplItem.szCounterName;
 
-        if ((s = PdhMakeCounterPath(&cpe[index],
-            szFullPath, &cbPathSize, 0)) != ERROR_SUCCESS)
+
+        status = PdhMakeCounterPath(&cpe[index], szFullPath, &cbPathSize, 0);
+        if (status != ERROR_SUCCESS)
         {
-            fprintf(stderr,"MCP failed %08x\n", s);
-            return ret;
+            OutputError(_TEXT("PdhMakeCounterPath() failed"), status);
+            return result;
         }
 
-        if ((s = PdhAddCounter(hQuery, szFullPath, 0, &hCounter[index]))
-            != ERROR_SUCCESS)
+        status = PdhAddCounter(hQuery, szFullPath, 0, &hCounter[index]);
+        if (status != ERROR_SUCCESS)
         {
-            fprintf(stderr, "PAC failed %08x for %s\n", s, cpe[index].szCounterName);
-            //return ret;
+            swprintf(szMessage, sizeof(szMessage), _TEXT("PdhAddCounter() failed for \"%s\""), cpe[index].szCounterName);
+            OutputError(szMessage, status);
+            return result;
         }
     }
 
@@ -105,10 +158,11 @@ BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **insta
         Sleep(100);
 
         // Collect data as often as you need to.
-        if ((s = PdhCollectQueryData(hQuery)) != ERROR_SUCCESS)
+        status = PdhCollectQueryData(hQuery);
+        if (status != ERROR_SUCCESS)
         {
-            fprintf(stderr, "PCQD failed %08x\n", s);
-            return ret;
+            OutputError(_TEXT("PdhCollectQuery() failed"), status);
+            return result;
         }
 
         if (i == 0) continue;
@@ -116,22 +170,23 @@ BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **insta
         // Extract the calculated performance counter value for each counter or instance.
         for (j = 0; j < countersCount; j++)
         {
-            if ((s = PdhGetFormattedCounterValue(hCounter[j], PDH_FMT_DOUBLE,
-                NULL, &counterValue)) != ERROR_SUCCESS)
+            status = PdhGetFormattedCounterValue(hCounter[j], PDH_FMT_DOUBLE, NULL, &counterValue);
+            if (status != ERROR_SUCCESS)
             {
-                fprintf(stderr, "PGFCV failed %08x %d\n", s, hCounter[j]);
+                wsprintf(szMessage, _TEXT("PdhGetFormattedCounterValue() failed for %d"), hCounter[j]);
+                OutputError(szMessage, status);
                 continue;
             }
             if (cpe[j].szInstanceName)
             {
-                fprintf(stdout, "%s(%s)\\%s:%3.3f\n",
+                fwprintf(stdout, _TEXT("%s(%s)\\%s:%3.3f\n"),
                     cpe[j].szObjectName,
                     cpe[j].szInstanceName,
                     cpe[j].szCounterName,
                     counterValue.doubleValue);
             }
             else
-                fprintf(stdout, "%s\\%s:%3.3f\n",
+                fwprintf(stdout, _TEXT("%s\\%s:%3.3f\n"),
                     cpe[j].szObjectName,
                     cpe[j].szCounterName,
                     counterValue.doubleValue);
@@ -150,5 +205,5 @@ BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **insta
     free(hCounter);
     free(cpe);
 
-    return 0;
+    return ERROR_SUCCESS;
 }
