@@ -4,14 +4,58 @@
 #include <stdlib.h>
 
 BOOL WINAPI GetCounterValues(LPTSTR serverName, int n, char** instances);
+BOOL WINAPI OutputError(int returnCode);
 
 int main(int argc, char *argv[])
 {
-    GetCounterValues(NULL, argc-1, &argv[1]);
+    int resultCode =
+    if (GetCounterValues(NULL, argc-1, &argv[1]) != ERROR_SUCCESS) {
+      resultCode = 1
+    }
+    return resultCode;
+}
+
+BOOL WINAPI OutputError(DWORD messageId)
+{
+    HANDLE hPdhLibrary = NULL;
+    LPWSTR pMessage = NULL;
+    DWORD_PTR pArgs[] = { (DWORD_PTR)L"<collectionname>" };
+    DWORD dwErrorCode = PDH_PLA_ERROR_ALREADY_EXISTS;
+
+    hPdhLibrary = LoadLibrary(L"pdh.dll");
+    if (NULL == hPdhLibrary)
+    {
+        wprintf(L"LoadLibrary failed with %lu\n", GetLastError());
+        return;
+    }
+
+    // Use the arguments array if the message contains insertion points, or you
+    // can use FORMAT_MESSAGE_IGNORE_INSERTS to ignore the insertion points.
+
+    if (!FormatMessage(FORMAT_MESSAGE_FROM_HMODULE |
+                       FORMAT_MESSAGE_ALLOCATE_BUFFER |
+                       FORMAT_MESSAGE_ARGUMENT_ARRAY,
+                       hPdhLibrary,
+                       dwErrorCode,
+                       0,
+                       (LPWSTR)&pMessage,
+                       0,
+                       //NULL))
+                       (va_list*)pArgs))
+    {
+        wprintf(L"Format message failed with 0x%x\n", GetLastError());
+        return;
+    }
+
+    wprintf(L"Formatted message: %s\n", pMessage);
+    LocalFree(pMessage);
+    return ERROR_SUCCESS;
 }
 
 BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **instances)
 {
+    // Set to standard out to be unbuffered so we do not have to flush
+    // each time we write out metric measurements
     setbuf(stdout, NULL);
     
     PDH_STATUS s;
@@ -64,9 +108,10 @@ BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **insta
     PDH_FMT_COUNTERVALUE counterValue;
 
     // Only do this setup once.
-    if ((s = PdhOpenQuery(NULL, 0, &hQuery)) != ERROR_SUCCESS)
+    s = PdhOpenQuery(NULL, 0, &hQuery)
+    if (s != ERROR_SUCCESS)
     {
-        fprintf(stderr, "POQ failed %08x\n", s);
+        OutputError(s);
         return ret;
     }
 
@@ -85,8 +130,9 @@ BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **insta
         cpe[index].dwInstanceIndex = cpeTmplItem.dwInstanceIndex;
         cpe[index].szCounterName = cpeTmplItem.szCounterName;
 
-        if ((s = PdhMakeCounterPath(&cpe[index],
-            szFullPath, &cbPathSize, 0)) != ERROR_SUCCESS)
+
+        s = PdhMakeCounterPath(&cpe[index], szFullPath, &cbPathSize, 0);
+        if (s != ERROR_SUCCESS)
         {
             fprintf(stderr,"MCP failed %08x\n", s);
             return ret;
@@ -116,6 +162,7 @@ BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **insta
         // Extract the calculated performance counter value for each counter or instance.
         for (j = 0; j < countersCount; j++)
         {
+        // boundary-plugin-iis: PGFCV failed 800007d8 8510384
             if ((s = PdhGetFormattedCounterValue(hCounter[j], PDH_FMT_DOUBLE,
                 NULL, &counterValue)) != ERROR_SUCCESS)
             {
@@ -150,5 +197,5 @@ BOOL WINAPI GetCounterValues(LPTSTR serverName, int instancesCount, char **insta
     free(hCounter);
     free(cpe);
 
-    return 0;
+    return ERROR_SUCCESS;
 }
