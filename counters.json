@@ -1,0 +1,34 @@
+{
+   "counters": [
+       {
+           "counter_name": "\\HTTP Service\\CurrentUrisCached",
+           "multiplier": "1.0",
+           "metric_id": "IIS_HTTP_SERVICE_CURRENT_URIS_CACHED"
+       },
+       {
+           "counter_name": "\\HTTP Service\\TotalFlushedUris",
+           "multiplier": "1.0",
+           "metric_id": "IIS_HTTP_SERVICE_TOTAL_FLUSHED_URIS"
+       },
+       {
+           "counter_name": "\\HTTP Service\\TotalUrisCached",
+           "multiplier": "1.0",
+           "metric_id": "IIS_HTTP_SERVICE_TOTAL_URIS_CACHED"
+       },
+       {
+           "counter_name": "\\HTTP Service\\UriCacheFlushes",
+           "multiplier": "1.0",
+           "metric_id": "IIS_HTTP_SERVICE_URI_CACHE_FLUSHES"
+       },
+       {
+           "counter_name": "\\HTTP Service\\UriCacheMisses",
+           "multiplier": "1.0",
+           "metric_id": "IIS_HTTP_SERVICE_URI_CACHE_HITS"
+       },
+       {
+           "counter_name": "\\HTTP Service\\UriCacheHits",
+           "multiplier": "1.0",
+           "metric_id": "IIS_HTTP_SERVICE_URI_CACHE_MISSES"
+       }
+   ]
+}
