@@ -3,8 +3,8 @@
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Total number of URIs currently cached by the kernel",
-    "displayName": "IIS Total URIs Cached",
-    "displayNameShort": "IIS Tot. URIs Cached",
+    "displayName": "IIS Current URIs Cached",
+    "displayNameShort": "IIS Cur. URIs Cached",
     "unit": "number"
   },
   "IIS_HTTP_SERVICE_TOTAL_FLUSHED_URIS": {
