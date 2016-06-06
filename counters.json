@@ -11,7 +11,7 @@
            "metric_id": "IIS_HTTP_SERVICE_TOTAL_FLUSHED_URIS"
        },
        {
-           "counter_name": "\\HTTP Service\\TotalCachedUris",
+           "counter_name": "\\HTTP Service\\TotalUrisCached",
            "multiplier": "1.0",
            "metric_id": "IIS_HTTP_SERVICE_TOTAL_URIS_CACHED"
        },
