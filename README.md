@@ -21,10 +21,10 @@ None
 
 ### Plugin Configuration Fields
 
-|Field Name        |Description                                                                       |
-|:-----------------|:---------------------------------------------------------------------------------|
-|Source            |The source to display in the legend for the data                                  |
-|Poll Interval (ms)|The Poll Interval in milliseconds to poll for metrics                             |
+|Field Name        |Description                                                                              |
+|:-----------------|:----------------------------------------------------------------------------------------|
+|Delay             |Amount of time in milliseconds to wait between collection of Windows performance counters|
+|Source            |The source to display in the legend for the data                                         |
  
 ### Metrics Collected
 
