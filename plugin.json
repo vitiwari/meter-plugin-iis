@@ -1,5 +1,5 @@
 {
-    "name" : "Boundary IIS Plugin",
+    "name" : "TrueSight Pulse IIS Meter Plugin",
     "version" : "0.9.1",
     "meterVersionRequired" : "4.2.0-611",
     "unsupportedPlatforms": [
@@ -20,36 +20,18 @@
         }
     ],
     "tags" : "iis",
-    "description": "A Boundary plugin for IIS that collects metrics from performance counters.",
+    "description": "A meter plugin for IIS that collects metrics from Windows performance counters.",
     "icon" : "icon.png",
-    "command": "boundary-meter init.lua",
-    "postExtract" : "",
-    "command_lua": "boundary-meter init.lua",
-    "postExtract_lua" : "",
-
+    "command": "powershell -NoLogo -NonInteractive -Command Set-ExecutionPolicy RemoteSigned; .\\get-counters.ps1",
     "metrics" : [
-        "IIS_GENERAL_CPU_USAGE",
-        "IIS_GENERAL_CPU_QUEUE_LENGTH",
-        "IIS_GENERAL_MEMORY_FREE",
-        "IIS_GENERAL_MEMORY_PAGE_PER_SECOND",
-        "IIS_GENERAL_DISK_TIME",
-        "IIS_GENERAL_NETWORK_BYTES_PER_SECOND",
-        "IIS_ASPNET_REQUESTS_PER_SECOND",
-        "IIS_ASPNET_RESTARTS",
-        "IIS_ASPNET_REQUEST_WAIT_TIME",
-        "IIS_ASPNET_REQUESTS_QUEUED",
-        "IIS_ASPNET_EXECPTIONS_THROWN_PER_SECOND",
-        "IIS_ASPNET_TOTAL_COMMITTED_BYTES",
-        "IIS_SERVICE_GET_REQUESTS_PER_SECOND",
-        "IIS_SERVICE_POST_REQUESTS_PER_SECOND",
-        "IIS_SERVICE_CURRENT_CONNECTIONS"
+        "IIS_HTTP_SERVICE_CURRENT_URIS_CACHED",
+        "IIS_HTTP_SERVICE_TOTAL_FLUSHED_URIS",
+        "IIS_HTTP_SERVICE_TOTAL_URIS_CACHED",
+        "IIS_HTTP_SERVICE_URI_CACHE_FLUSHES",
+        "IIS_HTTP_SERVICE_URI_CACHE_HITS",
+        "IIS_HTTP_SERVICE_URI_CACHE_MISSES"
     ],
-
     "dashboards": [
-        {
-            "layout": "d-w=4&d-h=3&d-pad=5&d-bg=none&d-g-IIS_GENERAL_CPU_USAGE=0-0-1-1&d-g-IIS_GENERAL_CPU_QUEUE_LENGTH=1-0-1-1&d-g-IIS_GENERAL_MEMORY_FREE=2-0-1-1&d-g-IIS_GENERAL_MEMORY_PAGE_PER_SECOND=3-0-1-1&d-g-IIS_GENERAL_DISK_TIME=0-1-1-1&d-g-IIS_GENERAL_NETWORK_BYTES_PER_SECOND=1-1-1-1&d-g-IIS_ASPNET_REQUESTS_PER_SECOND=2-1-1-1&d-g-IIS_ASPNET_RESTARTS=3-1-1-1&d-g-IIS_ASPNET_REQUEST_WAIT_TIME=0-2-1-1&d-g-IIS_ASPNET_REQUESTS_QUEUED=1-2-1-1&d-g-IIS_ASPNET_EXECPTIONS_THROWN_PER_SECOND=2-2-1-1&d-g-IIS_ASPNET_TOTAL_COMMITTED_BYTES=3-2-1-1",
-            "name": "IIS"
-        }
     ],
     
     "paramSchema": [

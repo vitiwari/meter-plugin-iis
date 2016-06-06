@@ -1,122 +1,50 @@
 {
-  "IIS_ASPNET_EXECPTIONS_THROWN_PER_SECOND": {
+  "IIS_HTTP_SERVICE_CURRENT_URIS_CACHED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
-    "description": "Number of exceptions per second that the application is throwing.",
-    "displayName": "IIS Exceptions Thrown/Second",
-    "displayNameShort": "Exceptions Thrown/Second",
+    "description": "Total number of URIs currently cached by the kernel",
+    "displayName": "IIS Total URIs Cached",
+    "displayNameShort": "IIS Tot. URIs Cached",
     "unit": "number"
   },
-  "IIS_ASPNET_REQUESTS_PER_SECOND": {
+  "IIS_HTTP_SERVICE_TOTAL_FLUSHED_URIS": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
-    "description": "Shows the throughput o the ASP.NET application on the server.",
-    "displayName": "IIS Requests/Second",
-    "displayNameShort": "Requests/Second",
+    "description": "Total number of URIs that have been removed from the kernel URI cache since service startup",
+    "displayName": "IIS Total URIs Flushed ",
+    "displayNameShort": "IIS Total URIs Flushed",
     "unit": "number"
   },
-  "IIS_ASPNET_REQUESTS_QUEUED": {
+  "IIS_HTTP_SERVICE_TOTAL_URIS_CACHED": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
-    "description": "The number of request that are in the queue to be processed.",
-    "displayName": "IIS Requests Queued",
-    "displayNameShort": "Rqeuests Queued",
+    "description": "Total number of URIs added to the kernel since service startup",
+    "displayName": "IIS Total URIs Cached",
+    "displayNameShort": "IIS Total URIs Cached",
     "unit": "number"
   },
-  "IIS_ASPNET_REQUEST_WAIT_TIME": {
+  "IIS_HTTP_SERVICE_URI_CACHE_FLUSHES": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
-    "description": "Shows the amount of time that the last request was held in the queue.",
-    "displayName": "IIS Request Wait Time",
-    "displayNameShort": "Request Wait Time",
-    "unit": "duration"
-  },
-  "IIS_ASPNET_RESTARTS": {
-    "defaultAggregate": "avg",
-    "defaultResolutionMS": 1000,
-    "description": "Indicates the number of restarts of the application in the server's uptime.",
-    "displayName": "IIS Application Restarts",
-    "displayNameShort": "Application Restarts",
+    "description": "Total number of kernel URI cache flushes (complete or partial) since service startup",
+    "displayName": "IIS URI Cache Flushes",
+    "displayNameShort": "IIS URI Cache Flushes",
     "unit": "number"
   },
-  "IIS_ASPNET_TOTAL_COMMITTED_BYTES": {
-    "defaultAggregate": "max",
-    "defaultResolutionMS": 1000,
-    "description": "Amount of virtual memory reserved for the application on the paging file.",
-    "displayName": "IIS Total Commited Bytes",
-    "displayNameShort": "Total Commited Bytes",
-    "unit": "bytecount"
-  },
-  "IIS_GENERAL_CPU_QUEUE_LENGTH": {
+  "IIS_HTTP_SERVICE_URI_CACHE_HITS": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
-    "description": "The processor queue is being filled up with threads when the server's processor are busy servicing other threads at the moment.",
-    "displayName": "IIS CPU Queue Length",
-    "displayNameShort": "CPU Queue Length",
+    "description": "Total number of successful lookups in the kernel URI cache",
+    "displayName": "IIS URI Cache Hits",
+    "displayNameShort": "IIS URI Cache Hits",
     "unit": "number"
   },
-  "IIS_GENERAL_CPU_USAGE": {
+  "IIS_HTTP_SERVICE_URI_CACHE_MISSES": {
     "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
-    "description": "Average percentage of processor time occupied",
-    "displayName": "IIS CPU Usage",
-    "displayNameShort": "CPU Usage",
-    "unit": "percent"
-  },
-  "IIS_GENERAL_DISK_TIME": {
-    "defaultAggregate": "avg",
-    "defaultResolutionMS": 1000,
-    "description": "Refers to the percentage of time the disk was occupied.",
-    "displayName": "IIS Disk Time Usage",
-    "displayNameShort": "Dist Time Usage",
-    "unit": "percent"
-  },
-  "IIS_GENERAL_MEMORY_FREE": {
-    "defaultAggregate": "avg",
-    "defaultResolutionMS": 1000,
-    "description": "Refers to the amount of physical memory on the system that can be used by new processes.",
-    "displayName": "IIS Free Memory",
-    "displayNameShort": "Free Memory",
-    "unit": "bytecount"
-  },
-  "IIS_GENERAL_MEMORY_PAGE_PER_SECOND": {
-    "defaultAggregate": "avg",
-    "defaultResolutionMS": 1000,
-    "description": "Refers to the amount of read and write request from memory to disk.",
-    "displayName": "IIS Memory Page/Second",
-    "displayNameShort": "Memory Page/Second",
-    "unit": "number"
-  },
-  "IIS_GENERAL_NETWORK_BYTES_PER_SECOND": {
-    "defaultAggregate": "avg",
-    "defaultResolutionMS": 1000,
-    "description": "Refers to the total amount of bytes over the network.",
-    "displayName": "IIS Network Bytes/Second",
-    "displayNameShort": "Network Bytes/Second",
-    "unit": "number"
-  },
-  "IIS_SERVICE_CURRENT_CONNECTIONS": {
-    "defaultAggregate": "max",
-    "defaultResolutionMS": 1000,
-    "description": "Number of active connections with the Web Service.",
-    "displayName": "IIS Current Connections",
-    "displayNameShort": "Current Connections",
-    "unit": "number"
-  },
-  "IIS_SERVICE_GET_REQUESTS_PER_SECOND": {
-    "defaultAggregate": "avg",
-    "defaultResolutionMS": 1000,
-    "description": "Amount of GET requests processed in a second.",
-    "displayName": "IIS GET Requests",
-    "displayNameShort": "GET Requests/Second",
-    "unit": "number"
-  },
-  "IIS_SERVICE_POST_REQUESTS_PER_SECOND": {
-    "defaultAggregate": "avg",
-    "defaultResolutionMS": 1000,
-    "description": "Amount of POST requests processed in a second.",
-    "displayName": "IIS POST Requests/Second",
-    "displayNameShort": "POST Requests/Second",
+    "description": "Total number of unsuccessful lookups in the kernel URI cache",
+    "displayName": "IIS URI Cache Misses",
+    "displayNameShort": "IIS URI Cache Misses",
     "unit": "number"
   }
 }
